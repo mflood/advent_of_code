@@ -1,14 +1,17 @@
-from typing import List
 import textwrap
+from typing import List
+
 
 def read_data_file(filename: str) -> str:
-    with open(filename, 'r', encoding='utf-8') as handle:
+    with open(filename, "r", encoding="utf-8") as handle:
         return handle.read()
 
+
 def get_lines(text: str) -> List[str]:
-    trimmed = [x.strip() for x in text.split('\n')]
+    trimmed = [x.strip() for x in text.split("\n")]
     non_empty_lines = filter(lambda x: x, trimmed)
     return non_empty_lines
+
 
 def get_calibration_value(line: str) -> int:
     numbers = []
@@ -16,10 +19,11 @@ def get_calibration_value(line: str) -> int:
         try:
             v = int(letter)
             numbers.append(letter)
-        except: 
+        except:
             pass
     value = int(numbers[0] + numbers[-1])
     return value
+
 
 def solve(lines: List[str]) -> int:
 
@@ -28,18 +32,20 @@ def solve(lines: List[str]) -> int:
     return total
 
 
-#data_file = None
-data_file = 'data/2023_day_1.txt'
+# data_file = None
+data_file = "data/2023_day_1.txt"
 
 if data_file:
-    raw = read_data_file('data/2023_day_1.txt')
+    raw = read_data_file("data/2023_day_1.txt")
 else:
-    raw = textwrap.dedent("""
+    raw = textwrap.dedent(
+        """
         1abc2
         pqr3stu8vwx
         a1b2c3d4e5f
         treb7uchet
-        """)
+        """
+    )
 
-lines = get_lines(text = raw)
+lines = get_lines(text=raw)
 print(solve(lines=lines))
